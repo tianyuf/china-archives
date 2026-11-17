@@ -7,7 +7,6 @@ Open archive catalogs published by Chinese municipal archives, packaged as offli
 | Archive | Catalog | Records | Link |
 |---|---|---|---|
 | Nanchang City Archives (南昌市档案馆) | Open archive catalog · through 2000 | 89,879 | [`nanchang/`](nanchang/) |
-| Changzhou City Archives (常州市档案馆) | Open archive catalog · 1986–2000 · **partial ~60%** | 59,400 | [`changzhou/`](changzhou/) |
 
 ## About
 
