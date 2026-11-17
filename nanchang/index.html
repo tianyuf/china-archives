@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>南昌市档案馆 · 开放档案目录检索 (2000年含前)</title>
+<title>Nanchang City Archives · Open Catalog (through 2000)</title>
 <style>
   /* — Catalogue design language (from archivist) — */
   @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap;
@@ -13,7 +13,7 @@
   @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap;
     src: url('fonts/IBMPlexMono-500-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
   @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap;
-    src: url('fonts/IBMPlexMono-500-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+2216, U+FEFF, U+FFFD; }
+    src: url('fonts/IBMPlexMono-500-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+2216, U+2217, U+FEFF, U+FFFD; }
   @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 400 600; font-display: swap;
     src: url('fonts/IBMPlexSans-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
   @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight:400 600; font-display: swap;
@@ -117,26 +117,26 @@
 <body>
 
 <header class="top">
-  <a class="brand" href="#">南昌市档案馆</a>
-  <span class="crumbs">开放档案目录<span class="slash"> / </span>2000年（含）前</span>
+  <a class="brand" href="#">Nanchang City Archives</a>
+  <span class="crumbs">open catalog<span class="slash"> / </span>through 2000</span>
   <span class="top-stat"><b id="headCount">…</b> records</span>
   <form class="find" onsubmit="return false" role="search">
-    <input type="search" id="topQ" placeholder="搜索档案目录…">
+    <input type="search" id="topQ" placeholder="Search catalog…">
   </form>
 </header>
 
 <main>
   <div class="page-head">
-    <h1>开放档案目录</h1>
-    <p class="subtitle">南昌市档案馆 · 2000年（含）前馆藏开放档案 · 共 <span id="headSubCount">…</span> 条</p>
+    <h1>Open Archive Catalog</h1>
+    <p class="subtitle">Nanchang City Archives · open records through 2000 · <span id="headSubCount">…</span> records</p>
   </div>
 
   <div class="list-tools">
-    <input class="search" type="text" id="q" placeholder="搜索题名 / 责任者 / 档号 / 全宗…（多词 = 或）" autocomplete="off">
-    <select class="list-filter" id="fond"><option value="">全部全宗</option></select>
-    <input class="list-year" type="number" id="y0" placeholder="起始年" min="1884" max="2001">
-    <input class="list-year" type="number" id="y1" placeholder="结束年" min="1884" max="2001">
-    <button class="clear-btn" id="clearBtn">清除</button>
+    <input class="search" type="text" id="q" placeholder="Search title / creator / archive no. / fond… (space = OR)" autocomplete="off">
+    <select class="list-filter" id="fond"><option value="">All fonds</option></select>
+    <input class="list-year" type="number" id="y0" placeholder="From yr" min="1884" max="2001">
+    <input class="list-year" type="number" id="y1" placeholder="To yr" min="1884" max="2001">
+    <button class="clear-btn" id="clearBtn">Clear</button>
     <span class="list-count" id="listCount"></span>
   </div>
 
@@ -159,7 +159,7 @@ const DATA = [["1001","1001-1980-0164-001","关于成立市文联筹备组及其
 
   const fonds = Array.from(new Set(DATA.map(r => r[0]))).sort();
   fonds.forEach(f => {
-    const o = document.createElement('option'); o.value = f; o.textContent = '全宗 ' + f;
+    const o = document.createElement('option'); o.value = f; o.textContent = 'Fonds ' + f;
     fondEl.appendChild(o);
   });
 
@@ -168,11 +168,11 @@ const DATA = [["1001","1001-1980-0164-001","关于成立市文联筹备组及其
   const yMin = Math.min(...years), yMax = Math.max(...years);
 
   const COLUMNS = [
-    {key:'fond',  label:'全宗号'},
-    {key:'no',    label:'档号'},
-    {key:'title', label:'题名'},
-    {key:'org',   label:'责任者'},
-    {key:'date',  label:'成文日期'},
+    {key:'fond',  label:'Fonds'},
+    {key:'no',    label:'Archive no.'},
+    {key:'title', label:'Title'},
+    {key:'org',   label:'Creator'},
+    {key:'date',  label:'Date'},
   ];
   let sortKey = null, sortDir = 1;
   const FIELD_INDEX = { fond:0, no:1, title:2, org:3, date:4 };
@@ -201,9 +201,9 @@ const DATA = [["1001","1001-1980-0164-001","关于成立市文联筹备组及其
   function renderChips(terms, fond, y0, y1){
     let html = '';
     terms.forEach(t => html += '<span class="chip">'+esc(t)+'<button class="chip-x" data-clear="q">×</button></span>');
-    if(fond) html += '<span class="chip">全宗 '+esc(fond)+'<button class="chip-x" data-clear="fond">×</button></span>';
-    if(y0!=null) html += '<span class="chip">≥ '+y0+' 年<button class="chip-x" data-clear="y0">×</button></span>';
-    if(y1!=null) html += '<span class="chip">≤ '+y1+' 年<button class="chip-x" data-clear="y1">×</button></span>';
+    if(fond) html += '<span class="chip">fonds '+esc(fond)+'<button class="chip-x" data-clear="fond">×</button></span>';
+    if(y0!=null) html += '<span class="chip">≥ '+y0+'<button class="chip-x" data-clear="y0">×</button></span>';
+    if(y1!=null) html += '<span class="chip">≤ '+y1+'<button class="chip-x" data-clear="y1">×</button></span>';
     chipsEl.innerHTML = html;
   }
 
@@ -234,7 +234,7 @@ const DATA = [["1001","1001-1980-0164-001","关于成立市文联筹备组及其
     const total = matched.length;
     const LIMIT = 500;
     renderChips(terms, fond, y0, y1);
-    listCount.textContent = '命中 ' + total.toLocaleString() + ' 条 · 全宗 ' + fonds.length + ' · 年份 ' + yMin + '–' + yMax;
+    listCount.textContent = total.toLocaleString() + ' matches · ' + fonds.length + ' fonds · ' + yMin + '–' + yMax;
 
     let head = '<tr>';
     for(const c of COLUMNS){
@@ -245,7 +245,7 @@ const DATA = [["1001","1001-1980-0164-001","关于成立市文联筹备组及其
     head += '</tr>';
 
     if(total === 0){
-      resEl.innerHTML = '<table class="list"><thead>'+head+'</thead><tbody><tr><td class="empty" colspan="5">未找到匹配记录 — 请放宽关键词或清除筛选条件。</td></tr></tbody></table>';
+      resEl.innerHTML = '<table class="list"><thead>'+head+'</thead><tbody><tr><td class="empty" colspan="5">No matches — refine keywords or clear filters.</td></tr></tbody></table>';
       return;
     }
 
@@ -262,7 +262,7 @@ const DATA = [["1001","1001-1980-0164-001","关于成立市文联筹备组及其
     }
     html += '</tbody></table>';
     if(total >= LIMIT){
-      html += '<div style="padding:8px 10px;font-size:12px;color:var(--muted)">已显示前 '+LIMIT+' 条（共 '+total.toLocaleString()+' 条）— 请缩小范围。</div>';
+      html += '<div style="padding:8px 10px;font-size:12px;color:var(--muted)">Showing first '+LIMIT+' of '+total.toLocaleString()+' — refine to narrow.</div>';
     }
     resEl.innerHTML = html;
 
@@ -279,7 +279,6 @@ const DATA = [["1001","1001-1980-0164-001","关于成立市文联筹备组及其
   function debounce(){ clearTimeout(t); t = setTimeout(render, 120); }
   [qEl, topQEl, fondEl, y0El, y1El].forEach(el => el.addEventListener('input', debounce));
   fondEl.addEventListener('change', render);
-  // keep top search in sync with main search
   topQEl.addEventListener('input', () => { qEl.value = topQEl.value; });
 
   clearBtn.addEventListener('click', () => {
